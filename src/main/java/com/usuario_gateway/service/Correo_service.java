@@ -39,11 +39,17 @@ public class Correo_service {
         return correoRepository.save(correo);
     }
 
-    public Correo update(Integer id){
+    public Correo update(Integer id, Correo correo2){
         Optional<Correo> correo = correoRepository.findById(id);
         if (correo.isPresent()){
             correoRepository.deleteById(id);
         }
         return null;
     }
+
+    public Correo delete(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
 }
