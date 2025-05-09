@@ -24,5 +24,15 @@ public class Phone {
     @JoinColumn(name = "user_id")
     private Usermodel usermodel;
 
+    public String getIdUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdUser'");
+    }
+
+    public String getNombre() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    }
+
 
 }
