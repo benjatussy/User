@@ -22,4 +22,19 @@ public class Correo {
     @JoinColumn(name = "user_id", nullable = false)
     private Usermodel usermodel;
 
+    public String getCorreo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCorreo'");
+    }
+
+    public String getIdUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdUser'");
+    }
+
+    public String getNombre() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    }
+
 }
