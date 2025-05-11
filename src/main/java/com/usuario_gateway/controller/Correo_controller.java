@@ -27,7 +27,7 @@ public class Correo_controller {
     public ResponseEntity<List<CorreoDTO>> getAllDTO() {
         // Este método debe existir en Correo_service
         List<CorreoDTO> correosDto = correo_service.getAll().stream().map(c ->
-            new CorreoDTO(c.getId(), c.getCorreo(), c.getIdUser(), c.getNombre())
+            new CorreoDTO(c.getId(), c.getCorreo(), c.getUsuario().getId(), c.getUsuario().getNombre())
         ).toList();
         return ResponseEntity.ok(correosDto);
     }
@@ -53,8 +53,8 @@ public class Correo_controller {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Correo correo){
         Correo updatedCorreo = correo_service.update(id, correo);
-        if (updatedCorreo !=null){
-            ResponseEntity.ok(updatedCorreo);
+        if (updatedCorreo != null) {
+        return ResponseEntity.ok(updatedCorreo);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje("Correo no encontrado"));
     }
@@ -62,9 +62,9 @@ public class Correo_controller {
     // Eliminar un correo
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        Correo deletedCorreo = correo_service.delete(id);
-        if (deletedCorreo != null) {
-            return ResponseEntity.ok(deletedCorreo);
+    boolean deleted = correo_service.delete(id);
+        if (deleted) {
+            return ResponseEntity.ok(new Mensaje("Correo eliminado correctamente"));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Mensaje("Correo no encontrado"));
     }

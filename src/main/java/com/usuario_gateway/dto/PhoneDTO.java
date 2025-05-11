@@ -8,7 +8,6 @@ import lombok.Data;
 public class PhoneDTO {
     private Integer id;
     private String numero;
-    private String idUser;
+    private Integer idUsuario; // ← corregido aquí
     private String nombre;
-
 }

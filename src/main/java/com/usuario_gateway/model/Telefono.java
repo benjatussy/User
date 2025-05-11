@@ -1,23 +1,25 @@
 package com.usuario_gateway.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "correo")
+@Table(name = "telefono")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Correo {
+public class Telefono {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 45)
-    private String correo;
+    @Column(nullable = false)
+    private String numero;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
     private Usuario usuario;
 }

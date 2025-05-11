@@ -1,7 +1,5 @@
 package com.usuario_gateway.dto;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,7 +8,6 @@ import lombok.Data;
 public class CorreoDTO {
     private Integer id;
     private String correo;
-    private String idUser;
+    private Integer idUsuario; // ← corregido aquí
     private String nombre;
-
 }

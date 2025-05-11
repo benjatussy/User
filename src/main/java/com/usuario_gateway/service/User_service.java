@@ -6,45 +6,53 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.usuario_gateway.model.Usermodel;
-import com.usuario_gateway.repository.User_repository;
+import com.usuario_gateway.model.Usuario;
+import com.usuario_gateway.repository.UserRepository;
 
 @Service
 public class User_service {
 
     @Autowired
-    private User_repository userRepository;
+    private UserRepository userRepository;
 
-    public List<Usermodel> getAll(){
+    // Obtener todos los usuarios
+    public List<Usuario> getAll() {
         return userRepository.findAll();
     }
 
-    public Usermodel getById(Integer id){
-        Optional<Usermodel> user = userRepository.findById(id);
-        return user.orElse(null);
+    // Obtener un usuario por su ID
+    public Usuario getById(Integer id) {
+        Optional<Usuario> user = userRepository.findById(id);
+        return user.orElse(null);  // Si no se encuentra el usuario, devuelve null
     }
 
-    public Usermodel add(Usermodel user){
-        return userRepository.save(user);
+    // Agregar un nuevo usuario
+    public Usuario add(Usuario user) {
+        return userRepository.save(user);  // Guardar el nuevo usuario
     }
 
-    public Usermodel update(Integer id, Usermodel user){
-        if (userRepository.existsById(id)){
+    // Actualizar un usuario existente
+    public Usuario update(Integer id, Usuario user) {
+        Optional<Usuario> existingUser = userRepository.findById(id);  // Buscar el usuario por ID
+        if (existingUser.isPresent()) {
+            // Si el usuario existe, actualizar los datos y guardar
             user.setId(id);
             return userRepository.save(user);
+        } else {
+            // Si el usuario no existe, devolver null
+            return null;
         }
-        return null;
     }
 
-    public Usermodel delete(Integer id){
-        Optional<Usermodel> user = userRepository.findById(id);
-        if (user.isPresent()){
-            userRepository.deleteById(id);
+    // Eliminar un usuario
+    public Usuario delete(Integer id) {
+        Optional<Usuario> user = userRepository.findById(id);  // Buscar el usuario por ID
+        if (user.isPresent()) {
+            userRepository.deleteById(id);  // Eliminar el usuario
+            return user.get();  // Devolver el usuario eliminado
+        } else {
+            // Si el usuario no existe, devolver null
+            return null;
         }
-        return null;
     }
-
-    
 }
-

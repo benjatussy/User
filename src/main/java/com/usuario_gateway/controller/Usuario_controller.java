@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.usuario_gateway.model.Usermodel;
+import com.usuario_gateway.model.Usuario;
 import com.usuario_gateway.service.User_service;
 
 @RestController
@@ -18,13 +18,13 @@ public class Usuario_controller {
     private User_service userService;
 
     @GetMapping
-    public ResponseEntity<List<Usermodel>> getAll(){
+    public ResponseEntity<List<Usuario>> getAll(){
         return ResponseEntity.ok(userService.getAll());
     }
 
     @GetMapping
     public ResponseEntity<?> getById(@PathVariable Integer id){
-        Usermodel user = userService.getById(id);
+        Usuario user = userService.getById(id);
         if (user != null){
             return ResponseEntity.ok(user);
         } else {
@@ -33,14 +33,14 @@ public class Usuario_controller {
     }
 
     @PostMapping
-    public ResponseEntity<Usermodel> add(@RequestBody Usermodel user){
-        Usermodel newUser = userService.add(user);
+    public ResponseEntity<Usuario> add(@RequestBody Usuario user){
+        Usuario newUser = userService.add(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Usermodel user){
-        Usermodel updatedUser = userService.update(id, user);
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Usuario user){
+        Usuario updatedUser = userService.update(id, user);
         if (updatedUser != null){
             return ResponseEntity.ok(updatedUser);
         } else {
@@ -50,7 +50,7 @@ public class Usuario_controller {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
-        Usermodel deletedUser = userService.delete(id);
+        Usuario deletedUser = userService.delete(id);
         if (deletedUser != null){
             return ResponseEntity.ok(deletedUser);
         } else {
