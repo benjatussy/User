@@ -22,7 +22,7 @@ public class Usuario_controller {
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id){
         Usuario user = userService.getById(id);
         if (user != null){
